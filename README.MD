@@ -1,5 +1,7 @@
 # smart-table-sort
 
+[![CircleCI](https://circleci.com/gh/smart-table/smart-table-sort.svg?style=svg)](https://circleci.com/gh/smart-table/smart-table-sort)
+
 takes a sort configuration object and returns a sort function operating on arrays (returning a new array without modifying the input array). For nodejs and browsers.
 
 ## Installation
