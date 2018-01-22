@@ -1,6 +1,6 @@
 {
   "name": "smart-table-sort",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "takes a sort configuration object and returns a sort function operating on arrays",
   "main": "dist/",
   "module": "dist/index.mjs",
