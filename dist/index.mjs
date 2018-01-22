@@ -1,4 +1,4 @@
-import {swap} from 'smart-table-operators';
+import { swap } from 'smart-table-operators';
 import pointer from 'smart-table-json-pointer';
 
 function sortByProperty(prop) {
@@ -23,13 +23,15 @@ function sortByProperty(prop) {
 	};
 }
 
-export default function sortFactory({pointer, direction} = {}) {
-	if (!pointer || direction === 'none') {
+function sortFactory({pointer: pointer$$1, direction} = {}) {
+	if (!pointer$$1 || direction === 'none') {
 		return array => [...array];
 	}
 
-	const orderFunc = sortByProperty(pointer);
+	const orderFunc = sortByProperty(pointer$$1);
 	const compareFunc = direction === 'desc' ? swap(orderFunc) : orderFunc;
 
 	return array => [...array].sort(compareFunc);
 }
+
+export default sortFactory;

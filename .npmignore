@@ -1,4 +1,4 @@
 .idea
 test
-scripts
 node_modules
+rollup
