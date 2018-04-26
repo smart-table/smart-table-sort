@@ -5,6 +5,7 @@
   "main": "dist/",
   "module": "index.js",
   "jsnext:main": "index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "build": "rollup -c ./rollup/build.js && rollup -c ./rollup/cdn.js",
     "test": "xo index.js && rollup -c ./test/rollup.config.js | node | tap-diff"
@@ -25,15 +26,15 @@
   },
   "homepage": "https://github.com/smart-table/smart-table-sort#readme",
   "dependencies": {
-    "smart-table-json-pointer": "^1.0.1",
-    "smart-table-operators": "^2.0.0"
+    "smart-table-json-pointer": "^1.0.3",
+    "smart-table-operators": "^2.0.4"
   },
   "devDependencies": {
-    "rollup": "^0.54.1",
-    "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup": "^0.58.2",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "tap-diff": "^0.1.1",
-    "xo": "^0.18.2",
-    "zora": "^1.1.6"
+    "xo": "^0.20.3",
+    "zora": "^2.0.1"
   }
 }
