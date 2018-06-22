@@ -17,5 +17,6 @@ declare namespace SmartTableSort {
     export interface SortInput {
         direction?: SortDirection;
         pointer?: string;
+        comparator?(aVal, bVal) : number;
     }
 }
