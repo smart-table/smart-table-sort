@@ -38,3 +38,39 @@ test('order using nested property', t => {
     {foo: {bar: 'bcd'}}
   ]);
 });
+
+function caseInsensitiveCompare (aVal, bVal) {
+  if (aVal === bVal) {
+    return 0;
+  }
+
+  if (bVal === undefined) {
+    return -1;
+  }
+
+  if (aVal === undefined) {
+    return 1;
+  }
+
+  return aVal.localeCompare(bVal);
+}
+
+test('order list by property value using alpha value with case insensitive compare', t => {
+  const input = [{prop: 'Foo'}, {prop: 'bar'}, {prop: 'woot'}];
+  const output = order({pointer: 'prop', comparator: caseInsensitiveCompare})(input);
+  t.deepEqual(output, [{prop: 'bar'}, {prop: 'Foo'}, {prop: 'woot'}]);
+});
+
+test('order using nested property', t => {
+  const input = [
+    {foo: {bar: 'bcd'}},
+    {foo: {bar: 'Acd'}},
+    {foo: {bar: 'abd'}}
+  ];
+  const output = order({pointer: 'foo.bar', comparator: caseInsensitiveCompare})(input);
+  t.deepEqual(output, [
+    {foo: {bar: 'abd'}},
+    {foo: {bar: 'Acd'}},
+    {foo: {bar: 'bcd'}}
+  ]);
+});
