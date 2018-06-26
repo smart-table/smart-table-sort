@@ -1,5 +1,5 @@
 import test from 'zora';
-import order from '../index';
+import {defaultSortFactory as order} from '../dist/src/index';
 
 test('order list by property value using alpha value', t => {
   const input = [{prop: 'foo'}, {prop: 'bar'}, {prop: 'woot'}];
@@ -38,4 +38,3 @@ test('order using nested property', t => {
     {foo: {bar: 'bcd'}}
   ]);
 });
-
