@@ -1,7 +1,7 @@
 import {swap} from 'smart-table-operators';
-import pointer from 'smart-table-json-pointer';
+import {pointer} from 'smart-table-json-pointer';
 
-const defaultComparator = (a, b) => {
+const defaultComparator = <T>(a: T, b: T) => {
     if (a === b) {
         return 0;
     }
@@ -23,25 +23,29 @@ export const enum SortDirection {
     NONE = 'none'
 }
 
-export interface SortConfiguration {
+interface Comparator<T> {
+    (a: T, b: T): number;
+}
+
+export interface SortConfiguration<T> {
     pointer?: string;
     direction?: SortDirection,
-    comparator?: <T>(a: T, b: T) => number;
+    comparator?: Comparator<T>;
 }
 
-function sortByProperty(prop, comparator) {
-    const propGetter = pointer(prop).get;
-    return (a, b) => comparator(propGetter(a), propGetter(b));
-}
+const sortByProperty = <T>(prop, comparator) => {
+    const propGetter = pointer<T>(prop).get;
+    return (a: T, b: T) => comparator(propGetter(a), propGetter(b));
+};
 
-export const defaultSortFactory = <T>(conf: SortConfiguration): (array: T[]) => T[] => {
+export const defaultSortFactory = <T>(conf: SortConfiguration<T>): (array: T[]) => T[] => {
     const {pointer, direction = SortDirection.ASC, comparator = defaultComparator} = conf;
 
     if (!pointer || direction === SortDirection.NONE) {
         return (array: T[]): T[] => [...array];
     }
 
-    const orderFunc = sortByProperty(pointer, comparator);
-    const compareFunc = direction === SortDirection.DESC ? swap(orderFunc) : orderFunc;
+    const orderFunc = sortByProperty<T>(pointer, comparator);
+    const compareFunc = direction === SortDirection.DESC ? <Comparator<T>>swap(orderFunc) : orderFunc;
     return (array: T[]): T[] => [...array].sort(compareFunc);
 };

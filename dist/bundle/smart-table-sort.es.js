@@ -1,35 +1,32 @@
-const swap = f => (a, b) => f(b, a);
+const swap = (f) => (a, b) => f(b, a);
 
-function pointer(path) {
-	const parts = path.split('.');
-
-	function partial(obj = {}, parts = []) {
-		const p = parts.shift();
-		const current = obj[p];
-		return (current === undefined || parts.length === 0) ?
-			current : partial(current, parts);
-	}
-
-	function set(target, newTree) {
-		let current = target;
-		const [leaf, ...intermediate] = parts.reverse();
-		for (const key of intermediate.reverse()) {
-			if (current[key] === undefined) {
-				current[key] = {};
-				current = current[key];
-			}
-		}
-		current[leaf] = Object.assign(current[leaf] || {}, newTree);
-		return target;
-	}
-
-	return {
-		get(target) {
-			return partial(target, [...parts]);
-		},
-		set
-	};
-}
+const pointer = (path) => {
+    const parts = path.split('.');
+    const partial = (obj = {}, parts = []) => {
+        const p = parts.shift();
+        const current = obj[p];
+        return (current === undefined || current === null || parts.length === 0) ?
+            current : partial(current, parts);
+    };
+    const set = (target, newTree) => {
+        let current = target;
+        const [leaf, ...intermediate] = parts.reverse();
+        for (const key of intermediate.reverse()) {
+            if (current[key] === undefined) {
+                current[key] = {};
+                current = current[key];
+            }
+        }
+        current[leaf] = Object.assign(current[leaf] || {}, newTree);
+        return target;
+    };
+    return {
+        get(target) {
+            return partial(target, [...parts]);
+        },
+        set
+    };
+};
 
 const defaultComparator = (a, b) => {
     if (a === b) {
@@ -49,10 +46,10 @@ var SortDirection;
     SortDirection["DESC"] = "desc";
     SortDirection["NONE"] = "none";
 })(SortDirection || (SortDirection = {}));
-function sortByProperty(prop, comparator) {
+const sortByProperty = (prop, comparator) => {
     const propGetter = pointer(prop).get;
     return (a, b) => comparator(propGetter(a), propGetter(b));
-}
+};
 const defaultSortFactory = (conf) => {
     const { pointer: pointer$$1, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
     if (!pointer$$1 || direction === "none" /* NONE */) {

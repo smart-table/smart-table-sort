@@ -1,5 +1,5 @@
 import { swap } from 'smart-table-operators';
-import pointer from 'smart-table-json-pointer';
+import { pointer } from 'smart-table-json-pointer';
 const defaultComparator = (a, b) => {
     if (a === b) {
         return 0;
@@ -18,10 +18,10 @@ export var SortDirection;
     SortDirection["DESC"] = "desc";
     SortDirection["NONE"] = "none";
 })(SortDirection || (SortDirection = {}));
-function sortByProperty(prop, comparator) {
+const sortByProperty = (prop, comparator) => {
     const propGetter = pointer(prop).get;
     return (a, b) => comparator(propGetter(a), propGetter(b));
-}
+};
 export const defaultSortFactory = (conf) => {
     const { pointer, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
     if (!pointer || direction === "none" /* NONE */) {
