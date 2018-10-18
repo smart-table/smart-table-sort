@@ -1,7 +1,7 @@
 import {swap} from 'smart-table-operators';
 import {pointer} from 'smart-table-json-pointer';
 
-const defaultComparator = <T>(a: T, b: T) => {
+const defaultComparator = <T>(a: T, b: T): number => {
     if (a === b) {
         return 0;
     }
