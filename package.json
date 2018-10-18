@@ -4,7 +4,7 @@
   "description": "takes a sort configuration object and returns a sort function operating on arrays",
   "main": "./dist/bundle/index",
   "module": "./dist/src/index.js",
-  "typings": "./dist/src/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "directories": {
     "test": "test"
   },
