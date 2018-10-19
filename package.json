@@ -1,9 +1,9 @@
 {
   "name": "smart-table-sort",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "takes a sort configuration object and returns a sort function operating on arrays",
   "main": "./dist/bundle/index",
-  "module": "./dist/src/index.js",
+  "module": "./dist/bundle/module.js",
   "types": "./dist/declarations/index.d.ts",
   "directories": {
     "test": "test"
@@ -14,7 +14,7 @@
     "build:clean": "rm -rf ./dist && mkdir -p ./dist/bundle && cp -r ./src ./dist/src",
     "build:compile": "tsc",
     "build:bundle": "rollup -c ./rollup/build.js && rollup -c ./rollup/cdn.js",
-    "build": "npm run build:clean && npm run build:compile && npm run build:bundle"
+    "build": "npm run build:clean && npm run build:compile && npm run build:bundle && rm -rf dist/src"
   },
   "repository": {
     "type": "git",
@@ -35,8 +35,8 @@
   },
   "homepage": "https://github.com/smart-table/smart-table-sort#readme",
   "dependencies": {
-    "smart-table-json-pointer": "^2.0.3",
-    "smart-table-operators": "^2.0.8"
+    "smart-table-json-pointer": "^2.0.4",
+    "smart-table-operators": "^2.0.10"
   },
   "devDependencies": {
     "rollup": "^0.61.2",
