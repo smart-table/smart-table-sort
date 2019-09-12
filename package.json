@@ -1,6 +1,6 @@
 {
   "name": "smart-table-sort",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "takes a sort configuration object and returns a sort function operating on arrays",
   "main": "./dist/bundle/index",
   "module": "./dist/bundle/module.js",
