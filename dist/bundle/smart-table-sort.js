@@ -15,12 +15,12 @@ var smartTableSort = (function (exports) {
             let current = target;
             const [leaf, ...intermediate] = parts.reverse();
             for (const key of intermediate.reverse()) {
-                if (current[key] === undefined) {
+                if (current[key] === void 0) {
                     current[key] = {};
                     current = current[key];
                 }
             }
-            current[leaf] = Object.assign(current[leaf] || {}, newTree);
+            current[leaf] = newTree;
             return target;
         };
         return {
@@ -53,11 +53,11 @@ var smartTableSort = (function (exports) {
         return (a, b) => comparator(propGetter(a), propGetter(b));
     };
     const defaultSortFactory = (conf) => {
-        const { pointer: pointer$$1, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
-        if (!pointer$$1 || direction === "none" /* NONE */) {
+        const { pointer, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
+        if (!pointer || direction === "none" /* NONE */) {
             return (array) => [...array];
         }
-        const orderFunc = sortByProperty(pointer$$1, comparator);
+        const orderFunc = sortByProperty(pointer, comparator);
         const compareFunc = direction === "desc" /* DESC */ ? swap(orderFunc) : orderFunc;
         return (array) => [...array].sort(compareFunc);
     };

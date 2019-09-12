@@ -35,15 +35,15 @@
   },
   "homepage": "https://github.com/smart-table/smart-table-sort#readme",
   "dependencies": {
-    "smart-table-json-pointer": "^2.0.4",
+    "smart-table-json-pointer": "^3.0.0",
     "smart-table-operators": "^2.0.10"
   },
   "devDependencies": {
-    "rollup": "^0.61.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup": "^1.21.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "tap-diff": "^0.1.1",
-    "typescript": "^2.9.2",
-    "zora": "^2.0.1"
+    "typescript": "^3.6.3",
+    "zora": "^3.0.3"
   }
 }

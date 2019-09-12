@@ -24,11 +24,11 @@ const sortByProperty = (prop, comparator) => {
     return (a, b) => comparator(propGetter(a), propGetter(b));
 };
 const defaultSortFactory = (conf) => {
-    const { pointer: pointer$$1, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
-    if (!pointer$$1 || direction === "none" /* NONE */) {
+    const { pointer, direction = "asc" /* ASC */, comparator = defaultComparator } = conf;
+    if (!pointer || direction === "none" /* NONE */) {
         return (array) => [...array];
     }
-    const orderFunc = sortByProperty(pointer$$1, comparator);
+    const orderFunc = sortByProperty(pointer, comparator);
     const compareFunc = direction === "desc" /* DESC */ ? swap(orderFunc) : orderFunc;
     return (array) => [...array].sort(compareFunc);
 };

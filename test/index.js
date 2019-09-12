@@ -1,4 +1,4 @@
-import test from 'zora';
+import {test} from 'zora';
 import {defaultSortFactory as order} from '../dist/bundle/module';
 
 test('order list by property value using alpha value', t => {
